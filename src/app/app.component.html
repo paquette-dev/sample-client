@@ -8,10 +8,21 @@
         <div class="sidenav-content">
           <mat-list>
             <mat-list-item>
-              <a routerLink="/" routerLinkActive="active-link">Home</a>
+              <a
+                routerLink="/"
+                routerLinkActive="active-link"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="sidenav-link"
+                >Home</a
+              >
             </mat-list-item>
             <mat-list-item>
-              <a routerLink="/users" routerLinkActive="active-link">Users</a>
+              <a
+                routerLink="/users"
+                routerLinkActive="active-link"
+                class="sidenav-link"
+                >Users</a
+              >
             </mat-list-item>
           </mat-list>
         </div>
