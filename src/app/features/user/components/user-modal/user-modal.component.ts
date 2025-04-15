@@ -1,7 +1,9 @@
 import { Component, OnInit, Optional } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialogRef } from '@angular/material/dialog';
+import { UserService } from '../../services/user.service';
+import { User } from '../../user.types';
 
 @Component({
   selector: 'app-user-modal',
@@ -10,10 +12,15 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class UserModalComponent implements OnInit {
   title = 'Create User';
+  isEdit = false;
+  userId: string | null = null;
+  user: User | null = null;
 
   constructor(
     private router: Router,
-    @Optional() private dialogRef: MatDialogRef<UserModalComponent>
+    private route: ActivatedRoute,
+    @Optional() private dialogRef: MatDialogRef<UserModalComponent>,
+    private userService: UserService
   ) {}
 
   userForm = new FormGroup({
@@ -26,14 +33,56 @@ export class UserModalComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.title = 'Create User';
+    this.route.params.subscribe((params) => {
+      if (params['id']) {
+        this.userId = params['id'];
+        this.isEdit = true;
+        this.title = 'Edit User';
+
+        if (this.userId) {
+          const user = this.userService.getUserById(this.userId);
+          if (user) {
+            this.userForm.patchValue(user);
+            this.user = user;
+          }
+        }
+      }
+    });
   }
 
   onSubmit() {
     if (this.userForm.valid) {
-      console.log(this.userForm.value);
+      const formData = this.userForm.value;
+
+      if (this.isEdit && this.user) {
+        const updatedUser: User = {
+          ...this.user,
+          firstName: formData.firstName || '',
+          lastName: formData.lastName || '',
+          email: formData.email || '',
+          username: formData.username || '',
+          department: formData.department || '',
+          status: formData.status || 'Active',
+        };
+        this.userService.updateUser(updatedUser);
+      } else {
+        const newUser: User = {
+          id: this.userService.getNextId(),
+          firstName: formData.firstName || '',
+          lastName: formData.lastName || '',
+          email: formData.email || '',
+          username: formData.username || '',
+          department: formData.department || '',
+          status: formData.status || 'Active',
+        };
+        this.userService.createUser(newUser);
+      }
+
       if (this.dialogRef) {
-        this.dialogRef.close(this.userForm.value);
+        this.dialogRef.close({
+          success: true,
+          data: formData,
+        });
       } else {
         this.router.navigate(['/users']);
       }

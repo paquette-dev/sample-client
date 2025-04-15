@@ -49,7 +49,9 @@
     </mat-form-field>
     <div class="user-modal-footer">
       <button mat-button (click)="closeModal()">Cancel</button>
-      <button mat-raised-button color="primary" type="submit">Create</button>
+      <button mat-raised-button color="primary" type="submit">
+        {{ isEdit ? "Update" : "Create" }}
+      </button>
     </div>
   </form>
 </div>

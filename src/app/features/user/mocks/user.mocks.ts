@@ -2,6 +2,7 @@ import { User } from '../user.types';
 
 export const MOCK_USERS: User[] = [
   {
+    id: '1',
     firstName: 'John',
     lastName: 'Doe',
     email: 'john.doe@company.com',
@@ -10,6 +11,7 @@ export const MOCK_USERS: User[] = [
     status: 'Active',
   },
   {
+    id: '2',
     firstName: 'Jane',
     lastName: 'Smith',
     email: 'jane.smith@company.com',
@@ -18,6 +20,7 @@ export const MOCK_USERS: User[] = [
     status: 'Active',
   },
   {
+    id: '3',
     firstName: 'Robert',
     lastName: 'Johnson',
     email: 'robert.johnson@company.com',
@@ -26,6 +29,7 @@ export const MOCK_USERS: User[] = [
     status: 'Inactive',
   },
   {
+    id: '4',
     firstName: 'Emily',
     lastName: 'Williams',
     email: 'emily.williams@company.com',
@@ -34,6 +38,7 @@ export const MOCK_USERS: User[] = [
     status: 'Active',
   },
   {
+    id: '5',
     firstName: 'Michael',
     lastName: 'Brown',
     email: 'michael.brown@company.com',
@@ -42,6 +47,7 @@ export const MOCK_USERS: User[] = [
     status: 'Active',
   },
   {
+    id: '6',
     firstName: 'Sarah',
     lastName: 'Davis',
     email: 'sarah.davis@company.com',
@@ -50,6 +56,7 @@ export const MOCK_USERS: User[] = [
     status: 'On Leave',
   },
   {
+    id: '7',
     firstName: 'David',
     lastName: 'Miller',
     email: 'david.miller@company.com',
