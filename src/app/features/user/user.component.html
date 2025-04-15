@@ -1,1 +1,17 @@
-<p>user works!</p>
+<div class="user-container">
+  <mat-toolbar color="accent">
+    <span>User Management</span>
+    <button
+      mat-icon-button
+      #tooltip="matTooltip"
+      matTooltip="Add a new user"
+      matTooltipPosition="right"
+      aria-tooltip="Button to add a new user"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </mat-toolbar>
+  <div class="user-content">
+    <app-user-list></app-user-list>
+  </div>
+</div>
