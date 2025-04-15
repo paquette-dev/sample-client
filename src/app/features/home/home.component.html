@@ -1,3 +1,22 @@
 <div class="home-container">
-  <h1>Home</h1>
+  <h1>Welcome to Sample App</h1>
+  <div class="home-content">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>User Management</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Create, view, update, and delete users.</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="navigateTo('/users')"
+        >
+          Manage Users
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>

@@ -4,3 +4,31 @@
   height: 100%;
   padding: 16px;
 }
+
+.home-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.home-content mat-card {
+  width: 300px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-content mat-card-title {
+  margin-bottom: 16px;
+}
+
+.home-content mat-card-content {
+  text-align: center;
+}
+
+.home-content mat-card-actions {
+  display: flex;
+  justify-content: center;
+}
