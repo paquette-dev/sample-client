@@ -1,0 +1,55 @@
+<div class="user-modal-container">
+  <div class="user-modal-header">
+    <h2>{{ title }}</h2>
+    <button mat-icon-button (click)="closeModal()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="user-modal-form">
+    <mat-form-field>
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="firstName" />
+      <mat-error *ngIf="userForm.controls.firstName.invalid">
+        First name is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Last Name</mat-label>
+      <input matInput formControlName="lastName" />
+      <mat-error *ngIf="userForm.controls.lastName.invalid">
+        Last name is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" />
+      <mat-error *ngIf="userForm.controls.email.invalid">
+        Email is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input matInput formControlName="username" />
+      <mat-error *ngIf="userForm.controls.username.invalid">
+        Username is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Department</mat-label>
+      <input matInput formControlName="department" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status">
+        <mat-option value="Active">Active</mat-option>
+        <mat-option value="Inactive">Inactive</mat-option>
+        <mat-option value="OnLeave">On Leave</mat-option>
+        <mat-option value="Terminated">Terminated</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="user-modal-footer">
+      <button mat-button (click)="closeModal()">Cancel</button>
+      <button mat-raised-button color="primary" type="submit">Create</button>
+    </div>
+  </form>
+</div>

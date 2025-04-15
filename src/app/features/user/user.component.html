@@ -7,6 +7,7 @@
       matTooltip="Add a new user"
       matTooltipPosition="right"
       aria-tooltip="Button to add a new user"
+      (click)="createUser()"
     >
       <mat-icon>add</mat-icon>
     </button>
@@ -14,4 +15,6 @@
   <div class="user-content">
     <app-user-list></app-user-list>
   </div>
+
+  <router-outlet name="modal"></router-outlet>
 </div>

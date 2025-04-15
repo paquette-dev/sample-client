@@ -11,9 +11,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { UserModalComponent } from './components/user-modal/user-modal.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
-  declarations: [UserComponent, UserListComponent],
+  declarations: [UserComponent, UserListComponent, UserModalComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
@@ -24,6 +30,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatTableModule,
     MatPaginatorModule,
     MatTooltipModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
+    MatSelectModule,
   ],
 })
 export class UserModule {}
