@@ -17,6 +17,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { UserService } from './services/user.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [UserComponent, UserListComponent, UserModalComponent],
@@ -35,6 +37,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     MatDialogModule,
     MatSelectModule,
+    SharedModule,
   ],
+  providers: [UserService],
 })
 export class UserModule {}

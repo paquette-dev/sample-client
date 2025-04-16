@@ -31,7 +31,7 @@
           mat-icon-button
           #tooltip="matTooltip"
           matTooltip="Edit user"
-          matTooltipPosition="right"
+          matTooltipPosition="left"
           aria-tooltip="Button to edit user"
           (click)="editUser(element)"
         >
@@ -43,6 +43,7 @@
           matTooltip="Delete user"
           matTooltipPosition="right"
           aria-tooltip="Button to delete user"
+          (click)="deleteUser(element)"
         >
           <mat-icon>delete</mat-icon>
         </button>

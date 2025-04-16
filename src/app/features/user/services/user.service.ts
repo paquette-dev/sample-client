@@ -28,6 +28,11 @@ export class UserService {
     return user;
   }
 
+  deleteUser(user: User): void {
+    this.users = this.users.filter((u) => u.id !== user.id);
+    this.usersSubject.next(this.users);
+  }
+
   updateUser(user: User): User[] {
     const index = MOCK_USERS.findIndex((u) => u.id === user.id);
     if (index !== -1) {

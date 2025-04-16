@@ -1,0 +1,27 @@
+.confirm-dialog-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.confirm-dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.confirm-dialog-title {
+  margin: 0;
+}
+
+.confirm-dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.confirm-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}

@@ -1,15 +1,11 @@
-import {
-  Component,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { User } from '../../user.types';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
+import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-user-list',
@@ -32,12 +28,12 @@ export class UserListComponent implements OnInit, OnDestroy {
   constructor(
     private userService: UserService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.subscription = this.userService.users$.subscribe((users) => {
-      console.log(users);
       this.dataSource.data = users;
     });
   }
@@ -57,5 +53,20 @@ export class UserListComponent implements OnInit, OnDestroy {
       ],
       { relativeTo: this.route }
     );
+  }
+
+  deleteUser(user: User) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Delete User',
+        message: 'Are you sure you want to delete this user?',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.userService.deleteUser(user);
+      }
+    });
   }
 }
