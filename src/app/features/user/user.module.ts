@@ -19,6 +19,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { UserService } from './services/user.service';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [UserComponent, UserListComponent, UserModalComponent],
@@ -38,6 +40,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     MatDialogModule,
     MatSelectModule,
     SharedModule,
+    HttpClientModule,
+    MatProgressSpinnerModule,
   ],
   providers: [UserService],
 })

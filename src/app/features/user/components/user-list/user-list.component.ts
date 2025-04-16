@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import { User } from '../../user.types';
+import { User } from '../../models/user.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
@@ -24,7 +24,8 @@ export class UserListComponent implements OnInit, OnDestroy {
     'actions',
   ];
   dataSource = new MatTableDataSource<User>([]);
-
+  isLoading = true;
+  noData = false;
   constructor(
     private userService: UserService,
     private router: Router,
@@ -35,6 +36,7 @@ export class UserListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscription = this.userService.users$.subscribe((users) => {
       this.dataSource.data = users;
+      this.isLoading = false;
     });
   }
 
@@ -65,7 +67,13 @@ export class UserListComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.userService.deleteUser(user);
+        this.userService.deleteUser(user).subscribe((deletedUser) => {
+          if (deletedUser) {
+            this.dataSource.data = this.dataSource.data.filter(
+              (u) => u.id !== user.id
+            );
+          }
+        });
       }
     });
   }

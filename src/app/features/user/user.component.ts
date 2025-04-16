@@ -63,8 +63,8 @@ export class UserComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed', result);
-      if (result) {
-        this.userService.createUser(result);
+      if (result && result.success && result.data) {
+        this.router.navigate(['/users']);
       }
     });
   }
