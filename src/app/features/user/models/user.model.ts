@@ -17,3 +17,9 @@ export interface User {
   department: string;
   status: string;
 }
+
+export interface UserResponse {
+  success: boolean;
+  id?: string;
+  message?: string;
+}
