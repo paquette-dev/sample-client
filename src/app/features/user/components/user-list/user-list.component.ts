@@ -26,12 +26,18 @@ export class UserListComponent implements OnInit, OnDestroy {
   dataSource = new MatTableDataSource<User>([]);
   isLoading = true;
   noData = false;
+  timeout = null;
+
   constructor(
     private userService: UserService,
     private router: Router,
     private route: ActivatedRoute,
     private dialog: MatDialog
-  ) {}
+  ) {
+    this.dataSource.filterPredicate = (data: User, filter: string) => {
+      return data.email.includes(filter);
+    };
+  }
 
   ngOnInit(): void {
     this.subscription = this.userService.users$.subscribe((users) => {
@@ -76,5 +82,19 @@ export class UserListComponent implements OnInit, OnDestroy {
         });
       }
     });
+  }
+
+  applyFilter(event: Event) {
+    if (this.timeout) {
+      return;
+    }
+
+    //@ts-ignore
+    this.timeout = setTimeout(() => {
+      console.log('timeout');
+      const filterValue = (event.target as HTMLInputElement).value;
+      this.dataSource.filter = filterValue.trim();
+      this.timeout = null;
+    }, 500);
   }
 }
